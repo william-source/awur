@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        var Arrpinjaman=[]
+        var ArrWaktuPinjaman=[]
+        var ArrTotalPengembalian=[]
+        
+        function total(){
+          alert("function masuk")
+          var pinjaman = document.getElementById("pinjaman").value
+          Arrpinjaman.push(pinjaman)
+          alert(pinjaman)
+          
+          var waktupinjaman = document.getElementById("waktupinjaman").value
+          ArrWaktuPinjaman.push(waktupinjaman)
+          alert(waktupinjaman)
+          
+          var tot = document.getElementById("totalpengembalian")
+          var persen=0
+          
+          if(parseInt(waktupinjaman)>=1 && parseInt(waktupinjaman)<=6)
+          {
+            persen=0.02
+          }
+          else if(parseInt(waktupinjaman)>=7&&parseInt(waktupinjaman)<=12)
+          {
+            persen=0.15
+          }
+          else if(parseInt(waktupinjaman)>12)
+          {
+            persen =0.01
+          }
+          
+          var total = parseInt(pinjaman)+parseInt((parseInt(pinjaman)*persen*parseInt(waktupinjaman)))
+          var strTotal = String(total);
+          tot.innerHTML = strTotal
+        
+          ArrTotalPengembalian.push(total)
+          addToTable(pinjaman,waktupinjaman,total) 
+      
+          }
+      
+        function addToTable(pinjaman,waktupinjaman,totalpengembalian){
+          var tableBody =$("table tbody")
+          var markup="<tr><td>"+pinjaman+"</td><td>"+waktupinjaman+"</td><td>"+totalpengembalian+"</td></tr>"
+          tableBody.append(markup)
+        }
+      
+      </script>
+      
+</head>
+<body>
+    <!--PAGE ONE-->
+<div data-role="page" id="pageone">
+    <div data-role="header">
+      <h1>Halaman Input Pinjaman</h1>
+    </div>
+  
+    <div data-role="main" class="ui-content">
+      <p>Welcome! If you click on the link below, it will take you to Page Two.</p>
+      <a href="#pagetwo">Go to Page Two</a>
+  
+      <div>
+        <tr>
+          <td>jumlah pinjaman</td>
+          <input type="number" id="pinjaman" value="">
+          <td>waktu pinjaman</td>
+          <input type="number" id="waktupinjaman" value="">
+          <button type="button" class="btn btn-primary" onclick="total()">pinjam</button>
+          <td>Total pengembalian = </td>
+          <label type="textarea" id="totalpengembalian" disable="true"></label>
+          <br>
+        </tr>
+      </div>
+  
+    </div>
+  
+    <div data-role="footer">
+      <h1>Footer Text</h1>
+    </div>
+  </div> 
+  
+  
+  
+  
+  
+  <!--PAGE TWO-->
+  <div data-role="page" id="pagetwo">
+    <div data-role="header">
+      <h1>Halaman Informasi Cicilan</h1>
+    </div>
+  
+    <div data-role="main" class="ui-content">
+      <p>This is Page Two. If you click on the link below, it will take you to Page One.</p>
+      <a href="#pageone">Go to Page One</a>
+       <div data-role="content">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Pinjaman</th>
+                          <th>Waktu Pinjaman</th>
+                          <th>Total Pengembalian</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      
+                  </tbody>
+              </table>
+          </div>
+  
+    </div>
+  
+    <div data-role="footer">
+      <h1>Footer Text</h1>
+    </div>
+  </div> 
+  
+</body>
+</html>
